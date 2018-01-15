@@ -1,20 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions/index';
-import VenueMap from './map';
+import VenueMapGlenwood from './mapGlenwood';
 import {Link} from 'react-router';
 import Profile from './profile';
-import Fayetteville from './fayettevilleBars';
-import Glenwood from './glenwoodBars';
 import styles from '../styles/explore.css';
 
-export class Explore extends React.Component {
+export class Glenwood extends React.Component {
   constructor(props) {
     super(props)
   }
 
   componentDidMount() {
-    this.props.getNewVenueSuggestions()
+    this.props.getNewBarSuggestionsGlenwood()
   }
 
 
@@ -23,7 +21,7 @@ export class Explore extends React.Component {
       <div className="exploreMain" >
         <nav className="exploreNav" >
           <Link to={'/fayetteville'}><button className="venue-options">Fayetteville Bars</button></Link>
-          <Link to={'/glenwood'}><button className="venue-options">Glenwood Bars</button></Link>
+          <Link to={'/explore'}><button className="venue-options">Fayetteville Food</button></Link>
           <Link to={'/profile'}><button className="exploreButton notes">My Venues and Notes</button></Link>
           <button className="exploreButton logoutButton" onClick={(event) => {
             event.preventDefault()
@@ -60,10 +58,10 @@ export class Explore extends React.Component {
 
           <button className="newSuggestionButton" style={{marginBottom: '20px'}} onClick={(event) => {
             event.preventDefault()
-            this.props.getNewVenueSuggestions()
+            this.props.getNewBarSuggestionsGlenwood()
           }}>Get another suggestion</button>
 
-        <VenueMap latitude={this.props.latitude} longitude={this.props.longitude} />
+        <VenueMapGlenwood latitude={this.props.latitude} longitude={this.props.longitude} />
 
       </div>
     )
@@ -72,7 +70,7 @@ export class Explore extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   logoutUser: () => dispatch(actions.logoutUser()),
-  getNewVenueSuggestions: () => dispatch(actions.getNewVenueSuggestions()),
+  getNewBarSuggestionsGlenwood: () => dispatch(actions.getNewBarSuggestionsGlenwood()),
   addVenueToSavedList: (name) => dispatch(actions.addVenueToSavedList(name)),
   addNoteToVenue: (name, note) => dispatch(actions.addNoteToVenue(name, note)),
   grabNotesForSavedVenues: (name) => dispatch(actions.grabNotesForSavedVenues(name))
@@ -123,4 +121,4 @@ const mapStateToProps = (state, props) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Explore)
+export default connect(mapStateToProps, mapDispatchToProps)(Glenwood)

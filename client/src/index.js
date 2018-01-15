@@ -9,7 +9,9 @@ import RegisterPage from './components/register-page';
 import LoginPage from './components/login-page';
 import Explore from './components/explore';
 import Home from './components/home';
-import Profile from './components/profile'
+import Profile from './components/profile';
+import Fayetteville from './components/fayettevilleBars'
+import Glenwood from './components/glenwoodBars'
 
 const routes = (
   <Provider store={store}>
@@ -20,6 +22,8 @@ const routes = (
         <Route path="/login" component={LoginPage} />
         <Route path="/explore" component={Explore} />
         <Route path="/profile" component={Profile} />
+        <Route path="/fayetteville" component={Fayetteville} />
+        <Route path="/glenwood" component={Glenwood} />
       </Route>
     </Router>
   </Provider>

@@ -22,6 +22,21 @@
   width: 100%;
 }
 
+.venue-options {
+	text-align: center;
+  font-size: 15px;
+  background: #e74c3c;
+  padding: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 170px;
+  color: white;
+  border: 1px solid black;
+  font-family: Ubuntu;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
 .exploreButton {
   text-align: center;
   font-size: 15px;
@@ -141,6 +156,10 @@ h1, h2, li, h3 {
     left: 3%;
   }
 
+	.venue-options {
+		display: none;
+	}
+
   .logoutButton {
     position: absolute;
     left: 50%;
@@ -168,6 +187,10 @@ h1, h2, li, h3 {
 			position: absolute;
 			left: 0;
 			width: 150px;
+		}
+
+		.venue-options {
+			display: none;
 		}
 
 		.logoutButton {
@@ -200,6 +223,10 @@ h1, h2, li, h3 {
 			width: 150px;
 		}
 
+		.venue-options {
+			display: none;
+		}
+
 		.logoutButton {
 			position: absolute;
 			right: 0;
@@ -222,6 +249,10 @@ h1, h2, li, h3 {
 			position: absolute;
 			left: 12%;
 			width: 150px;
+		}
+
+		.venue-options {
+			display: none;
 		}
 	}
 
