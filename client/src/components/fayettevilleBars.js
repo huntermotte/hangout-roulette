@@ -20,8 +20,8 @@ export class Fayetteville extends React.Component {
     return(
       <div className="exploreMain" >
         <nav className="exploreNav" >
-          <Link to={'/explore'}><button className="venue-options">Fayetteville Food</button></Link>
-          <Link to={'/glenwood'}><button className="venue-options">Glenwood Bars</button></Link>
+          <Link to={'/explore'}><button className="venue-options choice1">Fayetteville Food</button></Link>
+          <Link to={'/glenwood'}><button className="venue-options choice2">Glenwood Bars</button></Link>
           <Link to={'/profile'}><button className="exploreButton notes">My Venues and Notes</button></Link>
           <button className="exploreButton logoutButton" onClick={(event) => {
             event.preventDefault()

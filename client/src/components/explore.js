@@ -22,8 +22,8 @@ export class Explore extends React.Component {
     return(
       <div className="exploreMain" >
         <nav className="exploreNav" >
-          <Link to={'/fayetteville'}><button className="venue-options">Fayetteville Bars</button></Link>
-          <Link to={'/glenwood'}><button className="venue-options">Glenwood Bars</button></Link>
+          <Link to={'/fayetteville'}><button className="venue-options choice1">Fayetteville Bars</button></Link>
+          <Link to={'/glenwood'}><button className="venue-options choice2">Glenwood Bars</button></Link>
           <Link to={'/profile'}><button className="exploreButton notes">My Venues and Notes</button></Link>
           <button className="exploreButton logoutButton" onClick={(event) => {
             event.preventDefault()

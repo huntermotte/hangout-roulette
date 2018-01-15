@@ -156,8 +156,18 @@ h1, h2, li, h3 {
     left: 3%;
   }
 
-	.venue-options {
-		display: none;
+	.choice1 {
+		position: absolute;
+		width: 150px;
+		margin-top: 17%;
+		left: 3%;
+	}
+
+	.choice2 {
+		position: absolute;
+		width: 150px;
+		margin-top: 17%;
+		right: 3%;
 	}
 
   .logoutButton {
@@ -189,8 +199,18 @@ h1, h2, li, h3 {
 			width: 150px;
 		}
 
-		.venue-options {
-			display: none;
+		.choice1 {
+			position: absolute;
+			width: 150px;
+			margin-top: 17%;
+			left: 0;
+		}
+
+		.choice2 {
+			position: absolute;
+			width: 150px;
+			margin-top: 17%;
+			right: 0;
 		}
 
 		.logoutButton {
@@ -223,8 +243,18 @@ h1, h2, li, h3 {
 			width: 150px;
 		}
 
-		.venue-options {
-			display: none;
+		.choice1 {
+			position: absolute;
+			width: 140px;
+			margin-top: 15%;
+			left: 9%;
+		}
+
+		.choice2 {
+			position: absolute;
+			width: 140px;
+			margin-top: 15%;
+			right: 9%;
 		}
 
 		.logoutButton {
@@ -251,8 +281,18 @@ h1, h2, li, h3 {
 			width: 150px;
 		}
 
-		.venue-options {
-			display: none;
+		.choice1 {
+			position: absolute;
+			width: 150px;
+			margin-top: 13%;
+			left: 12%;
+		}
+
+		.choice2 {
+			position: absolute;
+			width: 150px;
+			margin-top: 13%;
+			right: 12%;
 		}
 	}
 
