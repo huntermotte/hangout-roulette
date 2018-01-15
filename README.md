@@ -1,12 +1,12 @@
 # Hangout Roulette
 
-A way to simplify the age old of question of "Where should we go to eat?"
+A way to simplify the age old of question of "Where should we go to eat or drink?"
 
 Try it out here: https://hangoutroulette.herokuapp.com
 
 ![alt text](hangoutHome.png)
 
-Functionality for different areas in Raleigh for bars and restaurants coming soon!
+New as of Jan 2018: functionality for finding bars around Fayetteville St and Glenwood South!
 
 ## The Basics
 
