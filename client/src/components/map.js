@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import marker from './marker.png';
+import userLocation from './explore.js';
 
 // const marker = new google.maps.Marker({})
 
@@ -18,7 +19,7 @@ const LocationMarker = ({ text }) => <div style={{
 
 export default class VenueMap extends Component {
   static defaultProps = {
-    center: {lat: 35.77613, lng: -78.63598},
+    center: {lat: 42.33343, lng: -71.04949},
     zoom: 15
   };
 

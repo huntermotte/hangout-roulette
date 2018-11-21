@@ -179,11 +179,26 @@ export const getUserData = () => {
   }
 }
 
+export const getUserLocation = (zip) => {
+  return (dispatch) => {
+    $.ajax({
+      type: 'GET',
+      url: '/api/location',
+      success: (response) => {
+        console.log(response)
+        let lat = response.LAT;
+        let lng = response.LNG;
+      },
+      error: (err) => console.log(err)
+    })
+  }
+}
+
 export const getNewVenueSuggestions = () => {
   return (dispatch) => {
     $.ajax({
       type: 'GET',
-      url: 'https://api.foursquare.com/v2/venues/explore?ll=35.77,-78.63&client_id=G21UGA10DG4RYZZFJPZTORRVYB3NHGE2SVWJO33BB2XKHVQR&client_secret=OJF0EI1MJGAXWX3LPJKIEQKU0E4UJRP333PNBC2R5LIFIAWO&v=20161016&section=food',
+      url: 'https://api.foursquare.com/v2/venues/explore?ll=42.33,-71.04&client_id=G21UGA10DG4RYZZFJPZTORRVYB3NHGE2SVWJO33BB2XKHVQR&client_secret=OJF0EI1MJGAXWX3LPJKIEQKU0E4UJRP333PNBC2R5LIFIAWO&v=20161016&section=food',
       success: (data) => {
         let randomIndex = Math.floor(Math.random() * 30) + 1
         dispatch(retrieveVenueData(data.response.groups[0].items[randomIndex].venue))
@@ -199,7 +214,7 @@ export const getNewBarSuggestions = () => {
   return (dispatch) => {
     $.ajax({
       type: 'GET',
-      url: 'https://api.foursquare.com/v2/venues/explore?ll=35.77,-78.63&client_id=G21UGA10DG4RYZZFJPZTORRVYB3NHGE2SVWJO33BB2XKHVQR&client_secret=OJF0EI1MJGAXWX3LPJKIEQKU0E4UJRP333PNBC2R5LIFIAWO&v=20161016&section=drinks',
+      url: 'https://api.foursquare.com/v2/venues/explore?ll=42.33,-71.04&client_id=G21UGA10DG4RYZZFJPZTORRVYB3NHGE2SVWJO33BB2XKHVQR&client_secret=OJF0EI1MJGAXWX3LPJKIEQKU0E4UJRP333PNBC2R5LIFIAWO&v=20161016&section=drinks',
       success: (data) => {
         let randomIndex = Math.floor(Math.random() * 30) + 1
         dispatch(retrieveVenueData(data.response.groups[0].items[randomIndex].venue))

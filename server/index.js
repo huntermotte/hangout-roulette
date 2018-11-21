@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 
-const {User, Venue} = require('./models');
+const {User, Venue, Location} = require('./models');
 const app = express();
 
 mongoose.connect(process.env.DATABASE_URL || 'mongodb://localhost:27017/hangout-roulette-users')
@@ -143,6 +143,7 @@ app.get('/api/logout', function(req, res) {
     	});
   });
 
+
 // save venue data and notes in database
 app.post('/api/venues', isAuthenticated, (req, res) => {
   let {name} = req.body
@@ -228,6 +229,19 @@ app.post('/api/venues', isAuthenticated, (req, res) => {
         res.send(err)
       }
       res.json(venues)
+    })
+  })
+
+  app.get('/api/location', isAuthenticated, (req, res) => {
+
+    let {zip} = req.body
+    console.log(zip)
+
+    return Location.find({'ZIP': zip}, (err, latLong) => {
+      if (err) {
+        res.send(err)
+      }
+      res.json(latLong)
     })
   })
 

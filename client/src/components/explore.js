@@ -29,6 +29,16 @@ export class Explore extends React.Component {
             event.preventDefault()
             this.props.logoutUser()
           }}>Logout</button>
+          <p>Edit Location</p>
+          <form onSubmit={(event) => {
+            event.preventDefault()
+            let zip = event.target.userZIP.value;
+            console.log(zip)
+            this.props.getUserLocation(zip)
+          }} >
+            <input className="venueLocation" type="text" required="false" name="userZIP" placeholder="Enter ZIP Code" />
+            <input className="locationChange" type="submit" value="Submit" />
+          </form>
         </nav>
 
         <h1 className="exploreHeader" >Why Not {this.props.venueName}?</h1>
@@ -73,6 +83,7 @@ export class Explore extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
   logoutUser: () => dispatch(actions.logoutUser()),
   getNewVenueSuggestions: () => dispatch(actions.getNewVenueSuggestions()),
+  getUserLocation: (zip) => dispatch(actions.getUserLocation(zip)),
   addVenueToSavedList: (name) => dispatch(actions.addVenueToSavedList(name)),
   addNoteToVenue: (name, note) => dispatch(actions.addNoteToVenue(name, note)),
   grabNotesForSavedVenues: (name) => dispatch(actions.grabNotesForSavedVenues(name))

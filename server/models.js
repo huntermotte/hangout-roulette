@@ -19,6 +19,12 @@ const venueSchema = new mongoose.Schema({
   // pushing an objectw user id and their note int the notes array
 });
 
+const locationSchema = new mongoose.Schema({
+  ZIP: String,
+  LAT: String,
+  LNG: String
+});
+
 userSchema.methods.validatePassword = function(password) {
   return bcrypt.compare(password, this.password);
 }
@@ -37,5 +43,6 @@ userSchema.methods.createExample = function() {
 
 const User = mongoose.model('User', userSchema);
 const Venue = mongoose.model('Venue', venueSchema);
+const Location = mongoose.model('Location', locationSchema);
 
-module.exports = {User, Venue};
+module.exports = {User, Venue, Location};
