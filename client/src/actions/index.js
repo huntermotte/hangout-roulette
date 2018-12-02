@@ -182,7 +182,9 @@ export const getUserData = () => {
 export const getUserLocation = (zip) => {
   return (dispatch) => {
     $.ajax({
-      type: 'GET',
+      type: 'POST',
+      data: JSON.stringify({zip}),
+      contentType: 'application/json',
       url: '/api/location',
       success: (response) => {
         console.log(response)

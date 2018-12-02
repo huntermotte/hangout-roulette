@@ -232,12 +232,13 @@ app.post('/api/venues', isAuthenticated, (req, res) => {
     })
   })
 
-  app.get('/api/location', isAuthenticated, (req, res) => {
+  app.post('/api/location', isAuthenticated, (req, res) => {
 
     let {zip} = req.body
-    console.log(zip)
+    parseInt(zip, 10)
+    console.log('this should be the zip: ', zip)
 
-    return Location.find({zip: zip}, (err, latLong) => {
+    return Location.find({ZIP: zip}, (err, latLong) => {
       if (err) {
         res.send(err)
       }
