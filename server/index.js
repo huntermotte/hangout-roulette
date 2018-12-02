@@ -237,7 +237,7 @@ app.post('/api/venues', isAuthenticated, (req, res) => {
     let {zip} = req.body
     console.log(zip)
 
-    return Location.find({'ZIP': zip}, (err, latLong) => {
+    return Location.find({zip: zip}, (err, latLong) => {
       if (err) {
         res.send(err)
       }

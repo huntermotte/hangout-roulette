@@ -20,9 +20,9 @@ const venueSchema = new mongoose.Schema({
 });
 
 const locationSchema = new mongoose.Schema({
-  ZIP: String,
-  LAT: String,
-  LNG: String
+  zip: String,
+  lat: String,
+  lng: String
 });
 
 userSchema.methods.validatePassword = function(password) {
