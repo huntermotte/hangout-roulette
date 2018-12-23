@@ -122,6 +122,14 @@ const mapStateToProps = (state, props) => {
   if (state.addVenue) {
     addVenue = state.addVenue
   }
+  let userLatitude = ''
+  if (state.userLatitude) {
+    userLatitude = state.userLatitude
+  }
+  let userLongitude = ''
+  if (state.userLongitude) {
+    userLatitude = state.userLongitude
+  }
   return {
     venueName,
     venueType,
@@ -130,7 +138,9 @@ const mapStateToProps = (state, props) => {
     latitude,
     longitude,
     notes,
-    addVenue
+    addVenue,
+    userLatitude,
+    userLongitude
   }
 }
 

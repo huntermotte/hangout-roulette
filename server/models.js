@@ -16,13 +16,16 @@ const venueSchema = new mongoose.Schema({
   name: String,
   notes: Array,
   userID: String
-  // pushing an objectw user id and their note int the notes array
+  // pushing an object w user id and their note into the notes array
 });
 
 const locationSchema = new mongoose.Schema({
-  zip: Number,
-  lat: Number,
-  lng: Number
+  ZIP: Number,
+  LAT: Number,
+  LNG: Number
+},
+{
+  collection: 'zipCodeToLatLong',
 });
 
 userSchema.methods.validatePassword = function(password) {

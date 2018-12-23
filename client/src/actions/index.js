@@ -179,23 +179,6 @@ export const getUserData = () => {
   }
 }
 
-export const getUserLocation = (zip) => {
-  return (dispatch) => {
-    $.ajax({
-      type: 'POST',
-      data: JSON.stringify({zip}),
-      contentType: 'application/json',
-      url: '/api/location',
-      success: (response) => {
-        console.log(response)
-        let lat = response.LAT;
-        let lng = response.LNG;
-      },
-      error: (err) => console.log(err)
-    })
-  }
-}
-
 export const getNewVenueSuggestions = () => {
   return (dispatch) => {
     $.ajax({
@@ -206,6 +189,26 @@ export const getNewVenueSuggestions = () => {
         dispatch(retrieveVenueData(data.response.groups[0].items[randomIndex].venue))
         dispatch(setCurrentVenue(data.response.groups[0].items[randomIndex].venue))
         dispatch(grabNotesForSavedVenues(data.response.groups[0].items[randomIndex].venue.name))
+      },
+      error: (err) => console.log(err)
+    })
+  }
+}
+
+export const getUserLocation = (zip) => {
+  return (dispatch) => {
+    $.ajax({
+      type: 'POST',
+      data: JSON.stringify({zip}),
+      contentType: 'application/json',
+      url: '/api/location',
+      success: (response) => {
+        console.log(response)
+        let lat = response[0].LAT;
+        let lng = response[0].LNG;
+        let latRounded = Math.round(100*lat)/100;
+        let lngRounded = Math.round(100*lng)/100;
+        console.log('lat and long:', lat, lng)
       },
       error: (err) => console.log(err)
     })
