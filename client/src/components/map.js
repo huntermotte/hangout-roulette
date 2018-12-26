@@ -18,10 +18,21 @@ const LocationMarker = ({ text }) => <div style={{
 </div>;
 
 export default class VenueMap extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   static defaultProps = {
-    center: {lat: 42.33343, lng: -71.04949},
-    zoom: 15
+    center:
+    {
+      lat: 42.33343,
+      lng: -71.04949
+    },
+    zoom: 14
   };
+
+  // componentDidMount() {
+  // }
 
   render() {
     return (
@@ -34,17 +45,23 @@ export default class VenueMap extends Component {
         marginRight: 'auto',
         marginTop: '0px'
       }}>
-      <GoogleMapReact
+       <GoogleMapReact
         defaultCenter={this.props.center}
+        center={
+          {
+            lat: this.props.mapLat,
+            lng: this.props.mapLng
+          }
+        }
         defaultZoom={this.props.zoom}
         style={{textAlign: 'center', marginRight: 'auto', marginLeft: 'auto'}}
-      >
+       >
         <LocationMarker
           lat={this.props.latitude}
           lng={this.props.longitude}
           text={marker}
         />
-      </GoogleMapReact>
+       </GoogleMapReact>
       </div>
     );
   }

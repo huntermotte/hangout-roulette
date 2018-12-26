@@ -47,6 +47,15 @@ export const addVenueSuccess = () => ({
   type: ADD_VENUE_SUCESS
 })
 
+export const UPDATE_USER_LOCATION = 'UPDATE_USER_LOCATION';
+export const updateUserLocation = (userLatitude, userLongitude, mapLat, mapLng) => ({
+  type: UPDATE_USER_LOCATION,
+  userLatitude,
+  userLongitude,
+  mapLat,
+  mapLng
+})
+
 export const saveUserInDatabase = (username, password) => {
   return (dispatch) => {
     return $.ajax({
@@ -179,11 +188,13 @@ export const getUserData = () => {
   }
 }
 
-export const getNewVenueSuggestions = () => {
+export const getNewVenueSuggestions = (fourSquareUrl) => {
+  // this might need to be a post request
+  console.log('this should be url', fourSquareUrl)
   return (dispatch) => {
     $.ajax({
       type: 'GET',
-      url: 'https://api.foursquare.com/v2/venues/explore?ll=42.33,-71.04&client_id=G21UGA10DG4RYZZFJPZTORRVYB3NHGE2SVWJO33BB2XKHVQR&client_secret=OJF0EI1MJGAXWX3LPJKIEQKU0E4UJRP333PNBC2R5LIFIAWO&v=20161016&section=food',
+      url: fourSquareUrl,
       success: (data) => {
         let randomIndex = Math.floor(Math.random() * 30) + 1
         dispatch(retrieveVenueData(data.response.groups[0].items[randomIndex].venue))
@@ -208,7 +219,10 @@ export const getUserLocation = (zip) => {
         let lng = response[0].LNG;
         let latRounded = Math.round(100*lat)/100;
         let lngRounded = Math.round(100*lng)/100;
-        console.log('lat and long:', lat, lng)
+        let latMap = lat;
+        let lngMap = lng;
+        dispatch(updateUserLocation(latRounded, lngRounded, latMap, lngMap))
+        console.log('lat and long:', latRounded, lngRounded, latMap, lngMap)
       },
       error: (err) => console.log(err)
     })

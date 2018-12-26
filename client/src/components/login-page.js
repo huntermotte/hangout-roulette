@@ -21,7 +21,12 @@ export class LoginPage extends React.Component {
           event.preventDefault();
           let username = event.target.username.value;
           let password = event.target.password.value;
+          let userLatitude = '42.33';
+          let userLongitude = '-71.04';
+          let mapLat = 42.33343;
+          let mapLng = -71.04949;
           this.props.getLoggedInUser(username, password)
+          this.props.updateUserLocation(userLatitude, userLongitude, mapLat, mapLng)
         }}>
           <label htmlFor="userUsername" className="usernameText">Enter Your Username:</label><br />
           <input type="text" required="true" name="username" className="newUsername form-control" placeholder="Username" />
@@ -44,7 +49,33 @@ export class LoginPage extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  getLoggedInUser: (username, password) => dispatch(actions.getLoggedInUser(username, password))
+  getLoggedInUser: (username, password) => dispatch(actions.getLoggedInUser(username, password)),
+  updateUserLocation: (userLatitude, userLongitude, mapLat, mapLng) => dispatch(actions.updateUserLocation(userLatitude, userLongitude, mapLat, mapLng))
 })
 
-export default connect(null, mapDispatchToProps)(LoginPage);
+const mapStateToProps = (state, props) => {
+  let userLatitude = ''
+  if (state.userLatitude) {
+    userLatitude = state.userLatitude
+  }
+  let userLongitude = ''
+  if (state.userLongitude) {
+    userLatitude = state.userLongitude
+  }
+  let mapLat = 0
+  if (state.mapLat) {
+    mapLat = state.mapLat
+  }
+  let mapLng = 0
+  if (state.mapLng) {
+    mapLng = state.mapLng
+  }
+  return {
+    userLatitude,
+    userLongitude,
+    mapLat,
+    mapLng
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

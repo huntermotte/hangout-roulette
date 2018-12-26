@@ -56,6 +56,15 @@ const usersReducer = (state=initialState, action) => {
       notes: null
     }
   }
+  else if (action.type === actions.UPDATE_USER_LOCATION) {
+    return {
+      ...state,
+      userLatitude: action.userLatitude,
+      userLongitude: action.userLongitude,
+      mapLat: action.mapLat,
+      mapLng: action.mapLng
+    }
+  }
   else {
     return state
   }

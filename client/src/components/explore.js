@@ -14,7 +14,8 @@ export class Explore extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getNewVenueSuggestions()
+    let fourSquareUrl = 'https://api.foursquare.com/v2/venues/explore?ll=' + this.props.userLatitude + ',' + this.props.userLongitude + '&client_id=G21UGA10DG4RYZZFJPZTORRVYB3NHGE2SVWJO33BB2XKHVQR&client_secret=OJF0EI1MJGAXWX3LPJKIEQKU0E4UJRP333PNBC2R5LIFIAWO&v=20161016&section=food'
+    this.props.getNewVenueSuggestions(fourSquareUrl)
   }
 
 
@@ -35,6 +36,8 @@ export class Explore extends React.Component {
             let zip = event.target.userZIP.value;
             console.log(zip)
             this.props.getUserLocation(zip)
+            let fourSquareUrl = 'https://api.foursquare.com/v2/venues/explore?ll=' + this.props.userLatitude + ',' + this.props.userLongitude + '&client_id=G21UGA10DG4RYZZFJPZTORRVYB3NHGE2SVWJO33BB2XKHVQR&client_secret=OJF0EI1MJGAXWX3LPJKIEQKU0E4UJRP333PNBC2R5LIFIAWO&v=20161016&section=food'
+            this.props.getNewVenueSuggestions(fourSquareUrl)
           }} >
             <input className="venueLocation" type="text" required="false" name="userZIP" placeholder="Enter ZIP Code" />
             <input className="locationChange" type="submit" value="Submit" />
@@ -70,10 +73,11 @@ export class Explore extends React.Component {
 
           <button className="newSuggestionButton" style={{marginBottom: '20px'}} onClick={(event) => {
             event.preventDefault()
-            this.props.getNewVenueSuggestions()
+            let fourSquareUrl = 'https://api.foursquare.com/v2/venues/explore?ll=' + this.props.userLatitude + ',' + this.props.userLongitude + '&client_id=G21UGA10DG4RYZZFJPZTORRVYB3NHGE2SVWJO33BB2XKHVQR&client_secret=OJF0EI1MJGAXWX3LPJKIEQKU0E4UJRP333PNBC2R5LIFIAWO&v=20161016&section=food'
+            this.props.getNewVenueSuggestions(fourSquareUrl)
           }}>Get another suggestion</button>
 
-        <VenueMap latitude={this.props.latitude} longitude={this.props.longitude} />
+        <VenueMap mapLat={this.props.mapLat} mapLng={this.props.mapLng} latitude={this.props.latitude} longitude={this.props.longitude} />
 
       </div>
     )
@@ -82,11 +86,12 @@ export class Explore extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   logoutUser: () => dispatch(actions.logoutUser()),
-  getNewVenueSuggestions: () => dispatch(actions.getNewVenueSuggestions()),
+  getNewVenueSuggestions: (fourSquareUrl) => dispatch(actions.getNewVenueSuggestions(fourSquareUrl)),
   getUserLocation: (zip) => dispatch(actions.getUserLocation(zip)),
   addVenueToSavedList: (name) => dispatch(actions.addVenueToSavedList(name)),
   addNoteToVenue: (name, note) => dispatch(actions.addNoteToVenue(name, note)),
-  grabNotesForSavedVenues: (name) => dispatch(actions.grabNotesForSavedVenues(name))
+  grabNotesForSavedVenues: (name) => dispatch(actions.grabNotesForSavedVenues(name)),
+  updateUserLocation: (userLatitude, userLongitude, mapLat, mapLng) => dispatch(actions.updateUserLocation(userLatitude, userLongitude, mapLat, mapLng))
 })
 
 const mapStateToProps = (state, props) => {
@@ -128,7 +133,15 @@ const mapStateToProps = (state, props) => {
   }
   let userLongitude = ''
   if (state.userLongitude) {
-    userLatitude = state.userLongitude
+    userLongitude = state.userLongitude
+  }
+  let mapLat = 0
+  if (state.mapLat) {
+    mapLat = state.mapLat
+  }
+  let mapLng = 0
+  if (state.mapLng) {
+    mapLng = state.mapLng
   }
   return {
     venueName,
@@ -140,7 +153,9 @@ const mapStateToProps = (state, props) => {
     notes,
     addVenue,
     userLatitude,
-    userLongitude
+    userLongitude,
+    mapLat,
+    mapLng
   }
 }
 
