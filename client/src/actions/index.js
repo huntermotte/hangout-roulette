@@ -189,7 +189,6 @@ export const getUserData = () => {
 }
 
 export const getNewVenueSuggestions = (fourSquareUrl) => {
-  // this might need to be a post request
   console.log('this should be url', fourSquareUrl)
   return (dispatch) => {
     $.ajax({
@@ -229,11 +228,12 @@ export const getUserLocation = (zip) => {
   }
 }
 
-export const getNewBarSuggestions = () => {
+export const getNewBarSuggestions = (fourSquareUrl) => {
+  console.log('this should be url', fourSquareUrl)
   return (dispatch) => {
     $.ajax({
       type: 'GET',
-      url: 'https://api.foursquare.com/v2/venues/explore?ll=42.33,-71.04&client_id=G21UGA10DG4RYZZFJPZTORRVYB3NHGE2SVWJO33BB2XKHVQR&client_secret=OJF0EI1MJGAXWX3LPJKIEQKU0E4UJRP333PNBC2R5LIFIAWO&v=20161016&section=drinks',
+      url: fourSquareUrl,
       success: (data) => {
         let randomIndex = Math.floor(Math.random() * 30) + 1
         dispatch(retrieveVenueData(data.response.groups[0].items[randomIndex].venue))

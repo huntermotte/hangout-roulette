@@ -41,7 +41,7 @@ export default function Home(props) {
         fontFamily: 'Ubuntu',
         fontWeight: 'bold'
       }}
-      >Get help picking out a bar or restaurant in Raleigh</h2>
+      >Get help picking out a bar or restaurant wherever you are</h2>
 
       <h2 className="header3" style={{
         position: 'absolute',

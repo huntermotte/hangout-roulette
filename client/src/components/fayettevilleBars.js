@@ -4,6 +4,8 @@ import * as actions from '../actions/index';
 import VenueMap from './map';
 import {Link} from 'react-router';
 import Profile from './profile';
+import Explore from './explore.js';
+import Glenwood from './glenwoodBars';
 import styles from '../styles/explore.css';
 
 export class Fayetteville extends React.Component {
@@ -12,7 +14,8 @@ export class Fayetteville extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getNewBarSuggestions()
+    let fourSquareUrl = 'https://api.foursquare.com/v2/venues/explore?ll=' + this.props.userLatitude +  ',' + this.props.userLongitude + '&client_id=G21UGA10DG4RYZZFJPZTORRVYB3NHGE2SVWJO33BB2XKHVQR&client_secret=OJF0EI1MJGAXWX3LPJKIEQKU0E4UJRP333PNBC2R5LIFIAWO&v=20161016&section=drinks'
+    this.props.getNewBarSuggestions(fourSquareUrl)
   }
 
 
@@ -20,13 +23,24 @@ export class Fayetteville extends React.Component {
     return(
       <div className="exploreMain" >
         <nav className="exploreNav" >
-          <Link to={'/explore'}><button className="venue-options choice1">Fayetteville Food</button></Link>
-          <Link to={'/glenwood'}><button className="venue-options choice2">Glenwood Bars</button></Link>
+          <Link to={'/explore'}><button className="venue-options choice2">Food</button></Link>
           <Link to={'/profile'}><button className="exploreButton notes">My Venues and Notes</button></Link>
           <button className="exploreButton logoutButton" onClick={(event) => {
             event.preventDefault()
             this.props.logoutUser()
           }}>Logout</button>
+          <p>Edit Location</p>
+          <form onSubmit={(event) => {
+            event.preventDefault()
+            let zip = event.target.userZIP.value;
+            console.log(zip)
+            this.props.getUserLocation(zip)
+            let fourSquareUrl = 'https://api.foursquare.com/v2/venues/explore?ll=' + this.props.userLatitude + ',' + this.props.userLongitude + '&client_id=G21UGA10DG4RYZZFJPZTORRVYB3NHGE2SVWJO33BB2XKHVQR&client_secret=OJF0EI1MJGAXWX3LPJKIEQKU0E4UJRP333PNBC2R5LIFIAWO&v=20161016&section=drinks'
+            this.props.getNewBarSuggestions(fourSquareUrl)
+          }} >
+            <input className="venueLocation" type="text" required="false" name="userZIP" placeholder="Enter ZIP Code" />
+            <input className="locationChange" type="submit" value="Submit" />
+          </form>
         </nav>
 
         <h1 className="exploreHeader" >Why Not {this.props.venueName}?</h1>
@@ -58,10 +72,11 @@ export class Fayetteville extends React.Component {
 
           <button className="newSuggestionButton" style={{marginBottom: '20px'}} onClick={(event) => {
             event.preventDefault()
-            this.props.getNewBarSuggestions()
+            let fourSquareUrl = 'https://api.foursquare.com/v2/venues/explore?ll=' + this.props.userLatitude + ',' + this.props.userLongitude + '&client_id=G21UGA10DG4RYZZFJPZTORRVYB3NHGE2SVWJO33BB2XKHVQR&client_secret=OJF0EI1MJGAXWX3LPJKIEQKU0E4UJRP333PNBC2R5LIFIAWO&v=20161016&section=drinks'
+            this.props.getNewBarSuggestions(fourSquareUrl)
           }}>Get another suggestion</button>
 
-        <VenueMap latitude={this.props.latitude} longitude={this.props.longitude} />
+        <VenueMap mapLat={this.props.mapLat} mapLng={this.props.mapLng} latitude={this.props.latitude} longitude={this.props.longitude} />
 
       </div>
     )
@@ -70,10 +85,12 @@ export class Fayetteville extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   logoutUser: () => dispatch(actions.logoutUser()),
-  getNewBarSuggestions: () => dispatch(actions.getNewBarSuggestions()),
+  getNewBarSuggestions: (fourSquareUrl) => dispatch(actions.getNewBarSuggestions(fourSquareUrl)),
+  getUserLocation: (zip) => dispatch(actions.getUserLocation(zip)),
   addVenueToSavedList: (name) => dispatch(actions.addVenueToSavedList(name)),
   addNoteToVenue: (name, note) => dispatch(actions.addNoteToVenue(name, note)),
-  grabNotesForSavedVenues: (name) => dispatch(actions.grabNotesForSavedVenues(name))
+  grabNotesForSavedVenues: (name) => dispatch(actions.grabNotesForSavedVenues(name)),
+  updateUserLocation: (userLatitude, userLongitude, mapLat, mapLng) => dispatch(actions.updateUserLocation(userLatitude, userLongitude, mapLat, mapLng))
 })
 
 const mapStateToProps = (state, props) => {
@@ -109,6 +126,22 @@ const mapStateToProps = (state, props) => {
   if (state.addVenue) {
     addVenue = state.addVenue
   }
+  let userLatitude = ''
+  if (state.userLatitude) {
+    userLatitude = state.userLatitude
+  }
+  let userLongitude = ''
+  if (state.userLongitude) {
+    userLongitude = state.userLongitude
+  }
+  let mapLat = 0
+  if (state.mapLat) {
+    mapLat = state.mapLat
+  }
+  let mapLng = 0
+  if (state.mapLng) {
+    mapLng = state.mapLng
+  }
   return {
     venueName,
     venueType,
@@ -117,8 +150,13 @@ const mapStateToProps = (state, props) => {
     latitude,
     longitude,
     notes,
-    addVenue
+    addVenue,
+    userLatitude,
+    userLongitude,
+    mapLat,
+    mapLng
   }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Fayetteville)
