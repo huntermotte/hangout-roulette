@@ -38,6 +38,8 @@ export class Profile extends React.Component {
             </div>
           )
         })}
+        <div className="background-below-notes">
+        </div>
       </div>
     )
   }

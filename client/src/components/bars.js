@@ -5,10 +5,9 @@ import VenueMap from './map';
 import {Link} from 'react-router';
 import Profile from './profile';
 import Explore from './explore.js';
-import Glenwood from './glenwoodBars';
 import styles from '../styles/explore.css';
 
-export class Fayetteville extends React.Component {
+export class Bars extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -29,18 +28,20 @@ export class Fayetteville extends React.Component {
             event.preventDefault()
             this.props.logoutUser()
           }}>Logout</button>
-          <p>Edit Location</p>
-          <form onSubmit={(event) => {
+          <div className="location-editor">
+           <p className="edit-location">Edit Location</p>
+           <form className="zip-code-form" onSubmit={(event) => {
             event.preventDefault()
             let zip = event.target.userZIP.value;
             console.log(zip)
             this.props.getUserLocation(zip)
             let fourSquareUrl = 'https://api.foursquare.com/v2/venues/explore?ll=' + this.props.userLatitude + ',' + this.props.userLongitude + '&client_id=G21UGA10DG4RYZZFJPZTORRVYB3NHGE2SVWJO33BB2XKHVQR&client_secret=OJF0EI1MJGAXWX3LPJKIEQKU0E4UJRP333PNBC2R5LIFIAWO&v=20161016&section=drinks'
             this.props.getNewBarSuggestions(fourSquareUrl)
-          }} >
+           }} >
             <input className="venueLocation" type="text" required="false" name="userZIP" placeholder="Enter ZIP Code" />
             <input className="locationChange" type="submit" value="Submit" />
-          </form>
+           </form>
+          </div>
         </nav>
 
         <h1 className="exploreHeader" >Why Not {this.props.venueName}?</h1>
@@ -159,4 +160,4 @@ const mapStateToProps = (state, props) => {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Fayetteville)
+export default connect(mapStateToProps, mapDispatchToProps)(Bars)

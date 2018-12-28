@@ -52,6 +52,38 @@
   cursor: pointer;
 }
 
+.location-editor {
+	margin-top: 1%
+}
+
+.edit-location {
+	font-size: 18px;
+	color: white;
+  font-family: Ubuntu;
+	margin-right: 50px;
+}
+
+.zip-code-form {
+	margin-right: 5px;
+}
+
+.venueLocation {
+	height: 15px;
+  font-size: 15px;
+  font-family: Ubuntu;
+  width: 10%;
+	padding-left: 3px;
+}
+
+.locationChange {
+	background: #e74c3c;
+  color: white;
+  font-family: Ubuntu;
+  border: 1px solid black;
+  cursor: pointer;
+	height: 22px;
+}
+
 .save-button {
   text-align: center;
   font-size: 15px;
