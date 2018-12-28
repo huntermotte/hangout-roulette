@@ -35,8 +35,10 @@ export class Bars extends React.Component {
             let zip = event.target.userZIP.value;
             console.log(zip)
             this.props.getUserLocation(zip)
-            let fourSquareUrl = 'https://api.foursquare.com/v2/venues/explore?ll=' + this.props.userLatitude + ',' + this.props.userLongitude + '&client_id=G21UGA10DG4RYZZFJPZTORRVYB3NHGE2SVWJO33BB2XKHVQR&client_secret=OJF0EI1MJGAXWX3LPJKIEQKU0E4UJRP333PNBC2R5LIFIAWO&v=20161016&section=drinks'
-            this.props.getNewBarSuggestions(fourSquareUrl)
+            setTimeout(() => {
+              let fourSquareUrl = 'https://api.foursquare.com/v2/venues/explore?ll=' + this.props.userLatitude + ',' + this.props.userLongitude + '&client_id=G21UGA10DG4RYZZFJPZTORRVYB3NHGE2SVWJO33BB2XKHVQR&client_secret=OJF0EI1MJGAXWX3LPJKIEQKU0E4UJRP333PNBC2R5LIFIAWO&v=20161016&section=food'
+              this.props.getNewBarSuggestions(fourSquareUrl)
+            }, 1000)
            }} >
             <input className="venueLocation" type="text" required="false" name="userZIP" placeholder="Enter ZIP Code" />
             <input className="locationChange" type="submit" value="Submit" />
@@ -69,7 +71,6 @@ export class Bars extends React.Component {
           <h2>Notes for {this.props.venueName}: {this.props.notes.map((item, index) => <li key={index}> {item.note} </li>)}</h2>
           <h2>Address: {this.props.address}</h2>
           <h2>Category: {this.props.venueType}</h2>
-          <h2>Price: {this.props.price}</h2>
 
           <button className="newSuggestionButton" style={{marginBottom: '20px'}} onClick={(event) => {
             event.preventDefault()
