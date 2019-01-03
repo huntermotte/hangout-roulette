@@ -215,6 +215,31 @@ h1, h2, li, h3 {
 		width: 50%;
 	}
 
+	.location-editor {
+		position: absolute;
+    left: 9%;
+		margin-top: 17%;
+		margin-left: 5px;
+		width: 150px;
+	}
+
+	.edit-location {
+		display: none;
+	}
+
+	.zip-code-form {
+		width: 150px;
+	}
+
+	.venueLocation {
+		width: 55%;
+		font-size: 10px;
+	}
+
+	.locationChange {
+		width: 30%;
+		font-size: 10px;
+	}
 
 }
 
@@ -260,6 +285,24 @@ h1, h2, li, h3 {
 			width: 50%;
 		}
 
+		.edit-location {
+			display: none;
+		}
+
+		.zip-code-form {
+			width: 150px;
+		}
+
+		.venueLocation {
+			width: 55%;
+			font-size: 10px;
+		}
+
+		.locationChange {
+			width: 30%;
+			font-size: 10px;
+		}
+
 	}
 
 @media only screen
@@ -302,6 +345,24 @@ h1, h2, li, h3 {
 			padding-left: 3px;
 			width: 50%;
 		}
+
+		.edit-location {
+			display: none;
+		}
+
+		.zip-code-form {
+			width: 150px;
+		}
+
+		.venueLocation {
+			width: 55%;
+			font-size: 10px;
+		}
+
+		.locationChange {
+			width: 30%;
+			font-size: 10px;
+		}
 	}
 
 	/* iPhone8 plus */
@@ -318,6 +379,24 @@ h1, h2, li, h3 {
 	.choice2 {
 		right: 12%;
 		margin-top: 14%;
+	}
+
+	.edit-location {
+		display: none;
+	}
+
+	.zip-code-form {
+		width: 150px;
+	}
+
+	.venueLocation {
+		width: 55%;
+		font-size: 10px;
+	}
+
+	.locationChange {
+		width: 30%;
+		font-size: 10px;
 	}
 
 
@@ -346,6 +425,24 @@ h1, h2, li, h3 {
 			margin-top: 13%;
 			right: 12%;
 		}
+
+		.edit-location {
+			display: none;
+		}
+
+		.zip-code-form {
+			width: 150px;
+		}
+
+		.venueLocation {
+			width: 55%;
+			font-size: 10px;
+		}
+
+		.locationChange {
+			width: 30%;
+			font-size: 10px;
+		}
 	}
 
 @media only screen and (min-width : 768px) and (max-width : 1024px) {
@@ -355,6 +452,11 @@ h1, h2, li, h3 {
 		padding-left: 3px;
 		width: 30%;
 	}
+
+	.venueLocation {
+		width: 15%; 
+	}
+
 }
 
 @media only screen

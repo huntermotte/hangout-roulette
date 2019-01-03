@@ -37,7 +37,7 @@ export default class VenueMap extends Component {
   render() {
     return (
       <div className='googleMap' style={{
-        height: '400px',
+        height: '100vh',
         width: '100%',
         textAlign: 'center',
         position: 'absolute',
